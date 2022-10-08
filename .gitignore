@@ -1,0 +1,11 @@
+# Node Modules
+node_modules
+
+# DS_Store for mac users
+.DS_Store
+
+# dotenv environment variable files
+.env
+.env.development
+.env.test
+.env.production

@@ -1,0 +1,127 @@
+{
+  "type": "object",
+  "properties": {
+    "_org": {
+      "type": "string"
+    },
+    "objectId": {
+      "type": "string"
+    },
+    "objectType": {
+      "type": "string",
+      "enum": ["plan"]
+    },
+    "planType": {
+      "type": "string"
+    },
+    "creationDate": {
+      "type": "string"
+    },
+    "planCostShares": {
+      "type": "object",
+      "properties": {
+        "_org": {
+          "type": "string"
+        },
+        "copay": {
+          "type": "integer"
+        },
+        "objectId": {
+          "type": "string"
+        },
+        "objectType": {
+          "type": "string"
+        },
+        "deductible": {
+          "type": "integer"
+        }
+      },
+      "additionalProperties": false,
+      "required": ["_org", "copay", "objectId", "objectType", "deductible"]
+    },
+    "linkedPlanServices": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "uniqueItems": true,
+        "properties": {
+          "_org": {
+            "type": "string"
+          },
+          "objectId": {
+            "type": "string"
+          },
+          "objectType": {
+            "type": "string",
+            "enum": ["planservice"]
+          },
+          "linkedService": {
+            "type": "object",
+            "properties": {
+              "_org": {
+                "type": "string"
+              },
+              "objectId": {
+                "type": "string"
+              },
+              "objectType": {
+                "type": "string",
+                "enum": ["service"]
+              },
+              "name": {
+                "type": "string"
+              }
+            },
+            "required": ["_org", "objectId", "objectType", "name"]
+          },
+          "planserviceCostShares": {
+            "type": "object",
+            "properties": {
+              "deductible": {
+                "type": "integer"
+              },
+              "_org": {
+                "type": "string"
+              },
+              "copay": {
+                "type": "integer"
+              },
+              "objectId": {
+                "type": "string"
+              },
+              "objectType": {
+                "type": "string",
+                "enum": ["membercostshare"]
+              }
+            },
+            "required": [
+              "deductible",
+              "_org",
+              "copay",
+              "objectId",
+              "objectType"
+            ]
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "_org",
+          "objectId",
+          "objectType",
+          "linkedService",
+          "planserviceCostShares"
+        ]
+      }
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "_org",
+    "objectId",
+    "objectType",
+    "planType",
+    "creationDate",
+    "planCostShares",
+    "linkedPlanServices"
+  ]
+}
