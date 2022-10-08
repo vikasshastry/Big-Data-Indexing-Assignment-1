@@ -2,6 +2,13 @@ const Plan = require("../models/plan");
 const schemaValidator = require("../utils/schemaValidator/schemaValidator");
 
 const insert = async (data) => {
+  if (!data.plan) {
+    return {
+      status: "Failed",
+      statusCode: 400,
+      data: "Plan missing in body",
+    };
+  }
   const planJson = JSON.parse(data.plan);
 
   const validationResult = await schemaValidator("plan", planJson);

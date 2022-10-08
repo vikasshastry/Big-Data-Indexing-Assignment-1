@@ -1,4 +1,3 @@
-const httpStatus = require("http-status");
 const database = require("../services");
 
 function formattedRespose(result) {
